@@ -1,5 +1,5 @@
-#r "Microsoft.WindowsAPICodePack.dll"
-#r "Microsoft.WindowsAPICodePack.Shell.dll"
+#r "E:\Git\mb-winapi-node\Microsoft.WindowsAPICodePack.dll"
+#r "E:\Git\mb-winapi-node\Microsoft.WindowsAPICodePack.Shell.dll"
 // #r "c:\Users\mberry\dev_home\projects\tmp_projects\edgejs-test\Microsoft.WindowsAPICodePack.dll"
 // #r "c:\Users\mberry\dev_home\projects\tmp_projects\edgejs-test\Microsoft.WindowsAPICodePack.Shell.dll"
 #r "C:\Windows\assembly\GAC_MSIL\PresentationFramework\3.0.0.0__31bf3856ad364e35\PresentationFramework.dll"

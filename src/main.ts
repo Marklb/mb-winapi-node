@@ -2,6 +2,9 @@ import * as ffi from 'ffi'
 import * as ref from 'ref'
 import * as ArrayType from 'ref-array'
 import * as Struct from 'ref-struct'
+import * as utilities from './utilities'
+
+export const utils = utilities
 
 // Declarations
 export namespace D {

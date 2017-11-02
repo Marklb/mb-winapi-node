@@ -1,4 +1,4 @@
-const edge = require('edge')
+const edge = require((process.versions['electron']) ? 'electron-edge' : 'edge')
 
 const edgePromise = (src) => {
   const f = edge.func(src)

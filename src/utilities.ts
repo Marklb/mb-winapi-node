@@ -3,12 +3,14 @@ import * as ffi from 'ffi'
 import * as ref from 'ref'
 import * as ArrayType from 'ref-array'
 import * as Struct from 'ref-struct'
-const edge = require('./edge-promise')
+// const edge = require('./edge-promise')
+// const { IsPrime } = require('../build/Release/addon')
+const addon = require('../build/Release/addon')
 const path = require('path')
 
-const cSharpScriptsPath = "i:/Git/mb-winapi-node/src/cs-scripts"
-const SetApplicationIdForSpecificWindow = edge.func(path.join(cSharpScriptsPath, 'setAppUserModelIID.cs'))
-const GetApplicationIdForSpecificWindow = edge.func(path.join(cSharpScriptsPath, 'getAppUserModelIID.cs'))
+// const cSharpScriptsPath = "e:/Git/mb-winapi-node/src/cs-scripts"
+// const SetApplicationIdForSpecificWindow = edge.func(path.join(cSharpScriptsPath, 'setAppUserModelIID.cs'))
+// const GetApplicationIdForSpecificWindow = edge.func(path.join(cSharpScriptsPath, 'getAppUserModelIID.cs'))
 
 const user32 = winApi.user32
 const kernel32 = winApi.kernel32
@@ -86,11 +88,14 @@ export const getProcesses = (): Process[] => {
 
 
 export const setAppUserModelIID = async (hWnd: number, appId: string): Promise<any> => {
-  return SetApplicationIdForSpecificWindow({hWnd: hWnd, appId: appId})
+  // return SetApplicationIdForSpecificWindow({hWnd: hWnd, appId: appId})
+  addon.SetAppUserModelIID(hWnd, appId)
+  return
 }
 
 export const getAppUserModelIID = async (hWnd: number): Promise<any> => {
-  return GetApplicationIdForSpecificWindow({hWnd: hWnd})
+  // return GetApplicationIdForSpecificWindow({hWnd: hWnd})
+  return addon.GetAppUserModelIID(hWnd)
 }
 
 export const test = async (): Promise<any> => {
