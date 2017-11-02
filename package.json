@@ -1,6 +1,6 @@
 {
   "name": "mb-winapi-node",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "main": "dist/main.js",
   "scripts": {
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "files": [
+    "bin/*",
     "dist/*",
     "build/Release/addon.node",
     "src/*",
