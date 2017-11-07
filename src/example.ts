@@ -1,4 +1,4 @@
-import * as winApi from './main'
+import * as winApi from './winApi'
 import * as utils from './utilities'
 
 const procs = utils.getProcesses()
@@ -21,13 +21,13 @@ for (const proc of procs) {
 console.log(list)
 
 const main = async () => {
-  await utils.setAppUserModelIID(list[0].hWnd, 'test.25378692345987656')
-  await utils.setAppUserModelIID(list[1].hWnd, 'aesk.25378692345987656')
-  await utils.setAppUserModelIID(list[2].hWnd, 'besp.25378692345987656')
+  // await utils.setAppUserModelIID(list[0].hWnd, 'test.25378692345987656')
+  // await utils.setAppUserModelIID(list[1].hWnd, 'aesk.25378692345987656')
+  // await utils.setAppUserModelIID(list[2].hWnd, 'besp.25378692345987656')
 
-  console.log(await utils.getAppUserModelIID(list[0].hWnd))
-  console.log(await utils.getAppUserModelIID(list[1].hWnd))
-  console.log(await utils.getAppUserModelIID(list[2].hWnd))
+  // console.log(await utils.getAppUserModelIID(list[0].hWnd))
+  // console.log(await utils.getAppUserModelIID(list[1].hWnd))
+  // console.log(await utils.getAppUserModelIID(list[2].hWnd))
 
 
   // console.log(await utils.setAppUserModelIID(list[0].hWnd, 'test.253786923459876'))

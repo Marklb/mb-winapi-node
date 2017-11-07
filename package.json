@@ -1,10 +1,10 @@
 {
   "name": "mb-winapi-node",
-  "version": "1.0.18",
+  "version": "1.0.29",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/main.js",
+    "start": "node dist/example.js",
     "build": "tsc",
     "compile:native": "node-gyp rebuild",
     "verup": "node scripts/verup.js",
@@ -18,7 +18,8 @@
     "dist/*",
     "build/Release/addon.node",
     "src/*",
-    "binding.gyp"
+    "binding.gyp",
+    "tsconfig.json"
   ],
   "devDependencies": {
     "@types/ffi": "0.0.19",

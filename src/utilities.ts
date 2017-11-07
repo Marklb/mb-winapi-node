@@ -1,4 +1,4 @@
-import * as winApi from './main'
+import * as winApi from './winApi'
 import * as ffi from 'ffi'
 import * as ref from 'ref'
 import * as ArrayType from 'ref-array'
@@ -23,7 +23,7 @@ export const ProcessInfo = Struct({
 
 export const ProcessesList = Struct({
   count: winApi.int,
-  list: winApi.ARRAY(ProcessInfo, 1024)
+  list: winApi.ARRAY(ProcessInfo, 2024)
 })
 
 
@@ -70,8 +70,8 @@ export const getProcesses = (): Process[] => {
 
     // Get Window Text
     // const length = user32.GetWindowTextLengthA(procInfo.hWnd) // May have an error
-    const pStr = Buffer.alloc(1024)
-    user32.GetWindowTextA(procInfo.hWnd, pStr, 1024)
+    const pStr = Buffer.alloc(2024)
+    user32.GetWindowTextA(procInfo.hWnd, pStr, 2024)
     let str = pStr.toString('utf-8')
     const terminatingNullPos = str.indexOf('\u0000')
     if (terminatingNullPos >= 0) { str = str.substr(0, terminatingNullPos) }

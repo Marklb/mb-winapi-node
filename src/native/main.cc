@@ -15,8 +15,10 @@
 #include <propsys.h>
 #include <propkey.h>
 #include <propvarutil.h>
-// #include "Propvarutil.h"
+#include <Shlwapi.h>
+
 #pragma comment(lib, "Propsys.lib")
+#pragma comment(lib, "Shlwapi.lib")
 
 #include <Strsafe.h>
 
