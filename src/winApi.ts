@@ -86,6 +86,33 @@ export const IPropertyStore = Struct({
 
 })
 
+export enum HWND_Z {
+  /**
+   * Places the window at the bottom of the Z order. If the hWnd parameter
+   * identifies a topmost window, the window loses its topmost status and is
+   * placed at the bottom of all other windows.
+   */
+  BOTTOM = 1,
+
+  /**
+   * Places the window at the top of the Z order.
+   */
+  HWND_TOP = 0,
+
+  /**
+   * Places the window above all non-topmost windows. The window maintains its
+   * topmost position even when it is deactivated.
+   */
+  HWND_TOPMOST = -1,
+
+  /**
+   * Places the window above all non-topmost windows (that is, behind all
+   * topmost windows). This flag has no effect if the window is already a
+   * non-topmost window.
+   */
+  HWND_NOTOPMOST = -2
+}
+
 export enum SW {
   /**
    * Hides the window and activates another window.
@@ -176,6 +203,134 @@ export enum SW {
   FORCEMINIMIZE = 11
 }
 
+export enum SWP {
+  /**
+   * If the calling thread and the thread that owns the window are attached to
+   * different input queues, the system posts the request to the thread that
+   * owns the window. This prevents the calling thread from blocking its
+   * execution while other threads process the request.
+   */
+  ASYNCWINDOWPOS = 0x4000,
+
+  /**
+   * Prevents generation of the WM_SYNCPAINT message.
+   */
+  DEFERERASE = 0x2000,
+
+  /**
+   * Draws a frame (defined in the window's class description) around the window.
+   */
+  DRAWFRAME = 0x0020,
+
+  /**
+   * Applies new frame styles set using the SetWindowLong function. Sends a
+   * WM_NCCALCSIZE message to the window, even if the window's size is not
+   * being changed. If this flag is not specified, WM_NCCALCSIZE is sent only
+   * when the window's size is being changed.
+   */
+  FRAMECHANGED = 0x0020,
+
+  /**
+   * Hides the window.
+   */
+  HIDEWINDOW = 0x0080,
+
+  /**
+   * Does not activate the window. If this flag is not set, the window is
+   * activated and moved to the top of either the topmost or non-topmost group
+   * (depending on the setting of the hWndInsertAfter parameter).
+   */
+  NOACTIVATE = 0x0010,
+
+  /**
+   * Discards the entire contents of the client area. If this flag is not
+   * specified, the valid contents of the client area are saved and copied back
+   * into the client area after the window is sized or repositioned.
+   */
+  NOCOPYBITS = 0x0100,
+
+  /**
+   * Retains the current position (ignores X and Y parameters).
+   */
+  NOMOVE = 0x0002,
+
+  /**
+   * Does not change the owner window's position in the Z order.
+   */
+  NOOWNERZORDER = 0x0200,
+
+  /**
+   * Does not redraw changes. If this flag is set, no repainting of any kind
+   * occurs. This applies to the client area, the nonclient area (including the
+   * title bar and scroll bars), and any part of the parent window uncovered as
+   * a result of the window being moved. When this flag is set, the application
+   * must explicitly invalidate or redraw any parts of the window and parent
+   * window that need redrawing.
+   */
+  NOREDRAW = 0x0008,
+
+  /**
+   * Same as the SWP_NOOWNERZORDER flag.
+   */
+  NOREPOSITION = 0x0200,
+
+  /**
+   * Prevents the window from receiving the WM_WINDOWPOSCHANGING message.
+   */
+  NOSENDCHANGING = 0x0400,
+
+  /**
+   * Retains the current size (ignores the cx and cy parameters).
+   */
+  NOSIZE = 0x0001,
+
+  /**
+   * Retains the current Z order (ignores the hWndInsertAfter parameter).
+   */
+  NOZORDER = 0x0004,
+
+  /**
+   * Displays the window.
+   */
+  SHOWWINDOW = 0x0040
+}
+
+export enum GWL {
+  /**
+   * Sets a new extended window style.
+   */
+  EXSTYLE = -20,
+
+  /**
+   * Sets a new application instance handle.
+   */
+  HINSTANCE = -6,
+
+  /**
+   * Sets a new identifier of the child window. The window cannot be a
+   * top-level window.
+   */
+  ID = -12,
+
+  /**
+   * Sets a new window style.
+   */
+  STYLE = -16,
+
+  /**
+   * Sets the user data associated with the window. This data is intended for
+   * use by the application that created the window. Its value is initially zero.
+   */
+  USERDATA = -21,
+
+  /**
+   * Sets a new address for the window procedure.
+   *
+   * You cannot change this attribute if the window does not belong to the same
+   * process as the calling thread.
+   */
+  WNDPROC = -4
+}
 
 // Libraries
 export const user32 = ffi.Library('user32', {
@@ -191,7 +346,12 @@ export const user32 = ffi.Library('user32', {
   GetWindowModuleFileName: [UINT, [HWND, LPTSTR, UINT]],
   GetShellWindow: [HWND, []],
   IsIconic: [BOOL, [HWND]],
-  IsWindowVisible: [BOOL, [HWND]]
+  IsWindowVisible: [BOOL, [HWND]],
+  GetForegroundWindow: [HWND, []],
+  SetForegroundWindow: [BOOL, [HWND]],
+  SetWindowPos: [BOOL, [HWND, HWND, int, int, int, int, UINT]],
+  SetWindowLongW: [LONG, [HWND, int, LONG]],
+  SetWindowLongA: [LONG, [HWND, int, LONG]]
 })
 
 export const kernel32 = ffi.Library('kernel32', {
