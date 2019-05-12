@@ -31,6 +31,7 @@ export class Process {
   hWnd: number
   pid: number
   title: string
+  path: string
 }
 
 export const getHwndEnumWindowProc = ffi.Callback(winApi.BOOL, [winApi.HWND, ref.refType(ProcessesList)], (hWnd, lParam) => {
@@ -77,6 +78,16 @@ export const getProcesses = (): Process[] => {
     if (terminatingNullPos >= 0) { str = str.substr(0, terminatingNullPos) }
     // console.log("Title: ",str)
     proc.title = str
+
+
+    const pStr2 = Buffer.alloc(2024)
+    user32.GetWindowModuleFileName(procInfo.hWnd, pStr2, 2024)
+    let str2 = pStr2.toString('utf-8')
+    const terminatingNullPos2 = str2.indexOf('\u0000')
+    if (terminatingNullPos2 >= 0) { str2 = str2.substr(0, terminatingNullPos2) }
+    // console.log("Path: ",str2)
+    proc.path = str2
+
 
 
     // procs.push(buf.list[i])
