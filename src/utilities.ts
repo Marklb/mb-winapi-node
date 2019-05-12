@@ -86,6 +86,26 @@ export const getProcesses = (): Process[] => {
   return procs
 }
 
+export function isMainWindow(hWnd: number): boolean {
+  return user32.GetWindow(hWnd, winApi.GW.OWNER) === 0 && user32.IsWindowVisible(hWnd)
+}
+
+export function getWindows(): Process[] {
+  const procs: Process[] = getProcesses()
+
+  const winProcs: Process[] = []
+  for (const proc of procs) {
+    if (isMainWindow(proc.hWnd)) {
+      winProcs.push(proc)
+
+      console.log(proc)
+
+      console.log(user32.IsWindowVisible(proc.hWnd))
+    }
+  }
+
+  return winProcs
+}
 
 export const setAppUserModelIID = async (hWnd: number, appId: string): Promise<any> => {
   // return SetApplicationIdForSpecificWindow({hWnd: hWnd, appId: appId})

@@ -1,26 +1,52 @@
 import * as winApi from './winApi'
 import * as utils from './utilities'
 
-const procs = utils.getProcesses()
-// console.log(procs)
 
-const list: utils.Process[] = []
-for (const proc of procs) {
-  // if (proc.title !== '') { console.log(proc.title) }
-  // if (proc.title.indexOf(' - Visual Studio Code') !== -1) {
-  //   list.push(proc)
-  // }
-  // if (proc.title.indexOf('Notepad++') !== -1) {
-  //   list.push(proc)
-  // }
-  if (proc.title.indexOf('Untitled - Notepad') !== -1) {
-    list.push(proc)
+
+function getProcessesExample() {
+  const procs = utils.getProcesses()
+  console.log(procs)
+
+  const list: utils.Process[] = []
+  for (const proc of procs) {
+    // if (proc.title !== '') { console.log(proc.title) }
+    // if (proc.title.indexOf(' - Visual Studio Code') !== -1) {
+    //   list.push(proc)
+    // }
+    // if (proc.title.indexOf('Notepad++') !== -1) {
+    //   list.push(proc)
+    // }
+    if (proc.title.indexOf('Untitled - Notepad') !== -1) {
+      list.push(proc)
+    }
   }
+
+  console.log(list)
 }
 
-console.log(list)
+function getWindowProcessesExample() {
+  const procs = utils.getWindows()
+  // console.log(procs)
 
-const main = async () => {
+  // const list: utils.Process[] = []
+  // for (const proc of procs) {
+  //   // if (proc.title !== '') { console.log(proc.title) }
+  //   // if (proc.title.indexOf(' - Visual Studio Code') !== -1) {
+  //   //   list.push(proc)
+  //   // }
+  //   // if (proc.title.indexOf('Notepad++') !== -1) {
+  //   //   list.push(proc)
+  //   // }
+  //   if (proc.title.indexOf('Untitled - Notepad') !== -1) {
+  //     list.push(proc)
+  //   }
+  // }
+
+  // console.log('\nFound:')
+  // console.log(list)
+}
+
+function appUserModelIIDExample() {
   // await utils.setAppUserModelIID(list[0].hWnd, 'test.25378692345987656')
   // await utils.setAppUserModelIID(list[1].hWnd, 'aesk.25378692345987656')
   // await utils.setAppUserModelIID(list[2].hWnd, 'besp.25378692345987656')
@@ -34,6 +60,11 @@ const main = async () => {
   // console.log(await utils.getAppUserModelIID(list[0].hWnd))
 
   // await utils.test()
+}
+
+const main = async () => {
+  // getProcessesExample()
+  getWindowProcessesExample()
 }
 main()
 

@@ -332,6 +332,74 @@ export enum GWL {
   WNDPROC = -4
 }
 
+export enum GW {
+  /**
+   * The retrieved handle identifies the child window at the top of the Z order,
+   * if the specified window is a parent window; otherwise, the retrieved handle
+   * is NULL. The function examines only child windows of the specified window.
+   * It does not examine descendant windows.
+   */
+  CHILD = 5,
+
+  /**
+   * The retrieved handle identifies the enabled popup window owned by the
+   * specified window (the search uses the first such window found using
+   * GW_HWNDNEXT); otherwise, if there are no enabled popup windows, the
+   * retrieved handle is that of the specified window.
+   */
+  ENABLEDPOPUP = 6,
+
+  /**
+   * The retrieved handle identifies the window of the same type that is highest
+   * in the Z order.
+   *
+   * If the specified window is a topmost window, the handle identifies a
+   * topmost window. If the specified window is a top-level window, the handle
+   * identifies a top-level window. If the specified window is a child window,
+   * the handle identifies a sibling window.
+   */
+  HWNDFIRST = 0,
+
+  /**
+   * The retrieved handle identifies the window of the same type that is lowest
+   * in the Z order.
+   *
+   * If the specified window is a topmost window, the handle identifies a
+   * topmost window. If the specified window is a top-level window, the handle
+   * identifies a top-level window. If the specified window is a child window,
+   * the handle identifies a sibling window.
+   */
+  HWNDLAST = 1,
+
+  /**
+   * The retrieved handle identifies the window below the specified window in
+   * the Z order.
+   *
+   * If the specified window is a topmost window, the handle identifies a
+   * topmost window. If the specified window is a top-level window, the handle
+   * identifies a top-level window. If the specified window is a child window,
+   * the handle identifies a sibling window.
+   */
+  HWNDNEXT = 2,
+
+  /**
+   * The retrieved handle identifies the window above the specified window in
+   * the Z order.
+   *
+   * If the specified window is a topmost window, the handle identifies a
+   * topmost window. If the specified window is a top-level window, the handle
+   * identifies a top-level window. If the specified window is a child window,
+   * the handle identifies a sibling window.
+   */
+  HWNDPREV = 3,
+
+  /**
+   * The retrieved handle identifies the specified window's owner window, if
+   * any. For more information, see [Owned Windows](https://msdn.microsoft.com/en-us/library/ms632599(v=VS.85).aspx).
+   */
+  OWNER = 4
+}
+
 // Libraries
 export const user32 = ffi.Library('user32', {
   ShowWindow: [BOOL, [HWND, int]],
@@ -345,6 +413,7 @@ export const user32 = ffi.Library('user32', {
   GetClassNameA: [int, [HWND, LPTSTR, int]],
   GetWindowModuleFileName: [UINT, [HWND, LPTSTR, UINT]],
   GetShellWindow: [HWND, []],
+  GetWindow: [HWND, [HWND, UINT]],
   IsIconic: [BOOL, [HWND]],
   IsWindowVisible: [BOOL, [HWND]],
   GetForegroundWindow: [HWND, []],
