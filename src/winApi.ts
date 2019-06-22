@@ -424,7 +424,7 @@ export const user32 = ffi.Library('user32', {
 })
 
 export const kernel32 = ffi.Library('kernel32', {
-  OpenProcess: [HANDLE, [DWORD, BOOL ,DWORD]]
+  OpenProcess: [HANDLE, [DWORD, BOOL, DWORD]]
 })
 
 export const shell32 = ffi.Library('shell32', {

@@ -109,9 +109,9 @@ export function getWindows(): Process[] {
     if (isMainWindow(proc.hWnd)) {
       winProcs.push(proc)
 
-      console.log(proc)
+      // console.log(proc)
 
-      console.log(user32.IsWindowVisible(proc.hWnd))
+      // console.log(user32.IsWindowVisible(proc.hWnd))
     }
   }
 
