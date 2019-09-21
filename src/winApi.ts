@@ -46,7 +46,9 @@ export const PVOID = PTR(VOID)
 export const HANDLE = long
 export const HWND = HANDLE
 export const LPSTR = PTR(CHAR)
+export const LPCSTR = PTR(CHAR)
 export const LPWSTR = PTR(WCHAR)
+export const LPCWSTR = PTR(WCHAR)
 export const PTSTR = (D.UNICODE) ? LPWSTR : LPSTR
 export const LPTSTR = (D.UNICODE) ? LPWSTR : LPSTR
 export const HRESULT = LONG
@@ -85,6 +87,16 @@ export const PROPERTYKEY = Struct({
 export const IPropertyStore = Struct({
 
 })
+
+export const RECT = Struct({
+  left: LONG,
+  top: LONG,
+  right: LONG,
+  bottom: LONG
+})
+export const PRECT = PTR(RECT)
+export const NPRECT = PRECT
+export const LPRECT = PRECT
 
 export enum HWND_Z {
   /**
@@ -414,6 +426,11 @@ export const user32 = ffi.Library('user32', {
   GetWindowModuleFileName: [UINT, [HWND, LPTSTR, UINT]],
   GetShellWindow: [HWND, []],
   GetWindow: [HWND, [HWND, UINT]],
+  GetDesktopWindow: [HWND, []],
+  GetParent: [HWND, [HWND]],
+  GetWindowRect: [BOOL, [HWND, LPRECT]],
+  FindWindowExA: [HWND, [HWND, HWND, LPCSTR, LPCSTR]],
+  FindWindowExW: [HWND, [HWND, HWND, LPCWSTR, LPCWSTR]],
   IsIconic: [BOOL, [HWND]],
   IsWindowVisible: [BOOL, [HWND]],
   GetForegroundWindow: [HWND, []],

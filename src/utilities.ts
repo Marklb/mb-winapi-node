@@ -5,7 +5,10 @@ import * as ArrayType from 'ref-array'
 import * as Struct from 'ref-struct'
 // const edge = require('./edge-promise')
 // const { IsPrime } = require('../build/Release/addon')
-const addon = require('../build/Release/addon')
+const isElectron = require('is-electron')
+// const addon = isElectron() ? require('../bin/win32-x64-57/mb-winapi-node') : require('../build/Release/addon')
+// const addon = isElectron() ? require('../bin/win32-x64-73/mb-winapi-node') : require('../build/Release/addon')
+const addon = isElectron() ? require('../bin/win32-x64-69/mb-winapi-node') : require('../build/Release/addon')
 const path = require('path')
 
 // const cSharpScriptsPath = "e:/Git/mb-winapi-node/src/cs-scripts"
@@ -25,7 +28,6 @@ export const ProcessesList = Struct({
   count: winApi.int,
   list: winApi.ARRAY(ProcessInfo, 2024)
 })
-
 
 export class Process {
   hWnd: number
